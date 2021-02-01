@@ -26,10 +26,18 @@ export default {
   },
   computed: {
     progress() {
-      const total = this.tasks.length
-      const done = this.tasks.filter(t => !t.pending).length
-      return Math.round(done / total * 100) || 0
-    }
+      const total = this.tasks.length;
+      const done = this.tasks.filter((t) => !t.pending).length;
+      return Math.round((done / total) * 100) || 0;
+    },
+  },
+  watch: {
+    tasks: {
+      deep: true,
+      handler() {
+        localStorage.setItem("tasks", JSON.stringify(this.tasks));
+      },
+    },
   },
   methods: {
     addTask(task) {
@@ -49,6 +57,10 @@ export default {
     toggleTaskState(index) {
       this.tasks[index].pending = !this.tasks[index].pending;
     },
+  },
+  created() {
+    const json = localStorage.getItem("tasks");
+    this.tasks = JSON.parse(json) || [];
   },
 };
 </script>
