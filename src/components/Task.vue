@@ -32,8 +32,8 @@ export default {
 .task {
   position: relative;
   box-sizing: border-box;
-  width: 350px;
-  height: 150px;
+  width: 250px;
+  height: 125px;
   padding: 10px;
   border-radius: 8px;
   font-size: 2rem;
